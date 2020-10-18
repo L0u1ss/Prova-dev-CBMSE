@@ -1,5 +1,6 @@
 <?php
-if (isset($_POST)) { 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') { 
+    $_POST = json_decode(file_get_contents('php://input'), true);
     $nome = $_POST["nome"];
     $sobrenome = $_POST["sobrenome"];
     $con = require("../config/db.php");
