@@ -1,4 +1,5 @@
 <?php
+require("../config/cors.php");
 $con = require("../config/db.php");
 $sql = $con->prepare("SELECT * FROM pessoa");
 $sql->execute();

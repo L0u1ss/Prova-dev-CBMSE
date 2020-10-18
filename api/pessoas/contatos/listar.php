@@ -1,4 +1,5 @@
 <?php
+require("../../config/cors.php");
 $userid = $_GET["userid"];
 $con = require("../../config/db.php");
 $sql = $con->prepare("SELECT * FROM contato_pessoa where pessoa_id=?");

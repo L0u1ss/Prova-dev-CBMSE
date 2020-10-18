@@ -1,4 +1,5 @@
 <?php
+require("../config/cors.php");
 if ($_SERVER['REQUEST_METHOD'] === 'PATCH') { 
     $_PATCH = json_decode(file_get_contents('php://input'), true);
     $userid = $_PATCH["userid"];
@@ -10,6 +11,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'PATCH') {
     $sql->bindParam(2, $sobrenome);
     $sql->bindParam(3, $userid);
     $sql->execute();
+    echo "{code:\"sucess\"}";
+} else if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    //nada
 } else {
     header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
 }

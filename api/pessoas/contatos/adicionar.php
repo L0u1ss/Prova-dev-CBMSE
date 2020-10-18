@@ -1,4 +1,5 @@
 <?php
+require("../../config/cors.php");
 if ($_SERVER['REQUEST_METHOD'] === 'POST') { 
     $_POST = json_decode(file_get_contents('php://input'), true);
     $contato = $_POST["contato"];
@@ -10,6 +11,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sql->bindParam(2, $userid);
     $sql->bindParam(3, $tipoContato);
     $sql->execute();
+    echo "{code:\"sucess\"}";
+} else if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    //nada
 } else {
     header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
 }

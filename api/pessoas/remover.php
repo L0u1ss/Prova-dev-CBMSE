@@ -1,4 +1,5 @@
 <?php
+require("../config/cors.php");
 if ($_SERVER['REQUEST_METHOD'] === 'DELETE') { 
     $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     $url_components = parse_url($url);
@@ -10,6 +11,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
     $sql = $con->prepare("DELETE FROM `pessoa` WHERE id=?");
     $sql->bindParam(1, $userid);
     $sql->execute();
+    echo "{code:\"sucess\"}";
+} else if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    //nada
 } else {
     header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
 }
