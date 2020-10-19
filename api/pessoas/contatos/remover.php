@@ -1,19 +1,25 @@
 <?php
+//import CORS; import conection db
 require("../../config/cors.php");
+$con = require("../../config/db.php");
+
+//Se o metodo de request usado for o DELETE...
 if ($_SERVER['REQUEST_METHOD'] === 'DELETE') { 
-    $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-    $url_components = parse_url($url);
-    @parse_str($url_components['query'], $_DELETE);
-
-    $contatoid = $_DELETE["contatoid"];
-
-    $con = require("../../config/db.php");
+    $userid = $_GET["userid"];
+    //prepara a query
     $sql = $con->prepare("DELETE FROM `contato_pessoa` WHERE id=?");
+    //passa os parametros da query
     $sql->bindParam(1, $contatoid);
+    //executa a query
     $sql->execute();
+    // apenas para não dar erro no front {TEMPORARIO}
     echo "{code:\"sucess\"}";
+    //se o método de request usado for OPITIONS...
 } else if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     //nada
+
+    //se o método do requesto for diferente...
 } else {
+    //erro
     header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
 }

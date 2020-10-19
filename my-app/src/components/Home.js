@@ -8,7 +8,7 @@ class Home extends React.Component {
         super(props);
         this.state = { pessoas: [] };
     }
-
+    
     listarPessoas() {
         axios.get('http://localhost/Prova-dev-CBMSE/api/pessoas/listar.php')
             .then(response => {
@@ -29,7 +29,7 @@ class Home extends React.Component {
                             <Grid item xs={3}>
                             </Grid>
                             <Grid item xs={4}>
-                                <h1>Lista de Contatos</h1>
+                                <h1>Lista de Contats</h1>
                             </Grid>
                             <Grid item xs={4}>
                                 <Button variant="contained" size="large" color="primary" onClick={() => this.props.changePage("addPessoa")}>
